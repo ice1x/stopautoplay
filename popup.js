@@ -122,10 +122,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Load the saved background color for this page and modify the dropdown
     // value, if needed.
-    getSavedState(url, (savedColor) => {
-      if (savedColor) {
-        setState(savedColor);
-        dropdown.value = savedColor;
+    getSavedState(url, (savedState) => {
+      if (savedState) {
+        setState(savedState);
+        dropdown.value = savedState;
       }
     });
 
