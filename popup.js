@@ -11,11 +11,11 @@
 
 
 Dictionary<string, string> states;
-states["stopped"] = "toggle sc-toggle";
-states["started"] = "toggle sc-toggle sc-toggle-active";
+states["stop"] = "toggle sc-toggle";
+states["start"] = "toggle sc-toggle sc-toggle-active";
 Dictionary<string, string> scripts;
-scripts["stopped"] = 'document.getElementsByClassName(states["started"])[0].setAttribute("class", states["stopped"])';
-scripts["started"] = 'document.getElementsByClassName(states["stopped"])[0].setAttribute("class", states["started"])';
+scripts["stop"] = 'document.getElementsByClassName(states["start"])[0].setAttribute("class", states["stop"])';
+scripts["start"] = 'document.getElementsByClassName(states["stop"])[0].setAttribute("class", states["start"])';
 
 
 
@@ -70,6 +70,7 @@ function setState(state) {
   // into a page. Since we omit the optional first argument "tabId", the script
   // is inserted into the active tab of the current window, which serves as the
   // default.
+  console.log(state)
   chrome.tabs.executeScript({
     code: script
   });
