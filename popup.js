@@ -119,6 +119,7 @@ function saveState(url, state) {
 // chrome.storage.local allows the extension data to be synced across multiple
 // user devices.
 document.addEventListener('DOMContentLoaded', () => {
+  console.log("Start JS")
   getCurrentTabUrl((url) => {
     var dropdown = document.getElementById('dropdown');
 
