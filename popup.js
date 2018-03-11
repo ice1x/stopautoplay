@@ -9,7 +9,7 @@
  *   is found.
  */
 
-
+console.log("Create dictionary");
 Dictionary<string, string> states;
 states["stop"] = "toggle sc-toggle";
 states["start"] = "toggle sc-toggle sc-toggle-active";
@@ -22,7 +22,7 @@ scripts["start"] = 'document.getElementsByClassName(states["stop"])[0].setAttrib
 function getCurrentTabUrl(callback) {
   // Query filter to be passed to chrome.tabs.query - see
   // https://developer.chrome.com/extensions/tabs#method-query
-  console.log("getCurrentTabUrl")
+  console.log("getCurrentTabUrl");
   var queryInfo = {
     active: true,
     currentWindow: true
@@ -71,7 +71,7 @@ function setState(state) {
   // into a page. Since we omit the optional first argument "tabId", the script
   // is inserted into the active tab of the current window, which serves as the
   // default.
-  console.log(state)
+  console.log(state);
   chrome.tabs.executeScript({
     code: script
   });
@@ -88,7 +88,7 @@ function getSavedState(url, callback) {
   // See https://developer.chrome.com/apps/storage#type-StorageArea. We check
   // for chrome.runtime.lastError to ensure correctness even when the API call
   // fails.
-  console.log("getSavedState")
+  console.log("getSavedState");
   chrome.storage.sync.get(url, (items) => {
     callback(chrome.runtime.lastError ? null : items[url]);
   });
@@ -102,7 +102,7 @@ function getSavedState(url, callback) {
  */
 function saveState(url, state) {
   var items = {};
-  console.log("saveState")
+  console.log("saveState");
   items[url] = state;
   // See https://developer.chrome.com/apps/storage#type-StorageArea. We omit the
   // optional callback since we don't need to perform any action once the
@@ -119,7 +119,7 @@ function saveState(url, state) {
 // chrome.storage.local allows the extension data to be synced across multiple
 // user devices.
 document.addEventListener('DOMContentLoaded', () => {
-  console.log("Start JS")
+  console.log("Start JS");
   getCurrentTabUrl((url) => {
     var dropdown = document.getElementById('dropdown');
 
