@@ -10,12 +10,9 @@
  */
 
 console.log("Create dictionary");
-var states = {};
 var scripts = {};
-states["stop"] = "toggle sc-toggle";
-states["start"] = "toggle sc-toggle sc-toggle-active";
-scripts["stop"] = 'document.getElementsByClassName(states["start"])[0].setAttribute("class", states["stop"])';
-scripts["start"] = 'document.getElementsByClassName(states["stop"])[0].setAttribute("class", states["start"])';
+scripts["stop"] = 'document.getElementsByClassName("toggle sc-toggle sc-toggle-active")[0].setAttribute("class", "toggle sc-toggle")';
+scripts["start"] = 'document.getElementsByClassName("toggle sc-toggle")[0].setAttribute("class", "toggle sc-toggle sc-toggle-active")';
 
 
 
