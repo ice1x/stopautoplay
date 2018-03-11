@@ -8,6 +8,14 @@
  * @param {function(string)} callback called when the URL of the current tab
  *   is found.
  */
+
+
+ Dictionary<string, string> states;
+ state["stopped"] = "toggle sc-toggle";
+ state["started"] = "toggle sc-toggle sc-toggle-active";
+
+
+
 function getCurrentTabUrl(callback) {
   // Query filter to be passed to chrome.tabs.query - see
   // https://developer.chrome.com/extensions/tabs#method-query
@@ -54,6 +62,7 @@ function getCurrentTabUrl(callback) {
  */
 function changeSoundCloudAutoPlayState(state) {
   //var script = 'document.body.style.backgroundColor="' + color + '";';
+  document.getElementsByClassName("toggle sc-toggle sc-toggle-active")[0].setAttribute("class", "toggle sc-toggle");
   // See https://developer.chrome.com/extensions/tabs#method-executeScript.
   // chrome.tabs.executeScript allows us to programmatically inject JavaScript
   // into a page. Since we omit the optional first argument "tabId", the script
