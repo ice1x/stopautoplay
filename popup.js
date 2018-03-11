@@ -10,9 +10,12 @@
  */
 
 
- Dictionary<string, string> states;
- state["stopped"] = "toggle sc-toggle";
- state["started"] = "toggle sc-toggle sc-toggle-active";
+Dictionary<string, string> states;
+states["stopped"] = "toggle sc-toggle";
+states["started"] = "toggle sc-toggle sc-toggle-active";
+Dictionary<string, string> scripts;
+scripts["stopped"] = 'document.getElementsByClassName(states["started"])[0].setAttribute("class", states["stopped"])';
+scripts["started"] = 'document.getElementsByClassName(states["stopped"])[0].setAttribute("class", states["started"])';
 
 
 
@@ -60,26 +63,8 @@ function getCurrentTabUrl(callback) {
  *
  * @param {string} color The new background color.
  */
-function changeSoundCloudAutoPlayState(state) {
-  //var script = 'document.body.style.backgroundColor="' + color + '";';
-  document.getElementsByClassName("toggle sc-toggle sc-toggle-active")[0].setAttribute("class", "toggle sc-toggle");
-  // See https://developer.chrome.com/extensions/tabs#method-executeScript.
-  // chrome.tabs.executeScript allows us to programmatically inject JavaScript
-  // into a page. Since we omit the optional first argument "tabId", the script
-  // is inserted into the active tab of the current window, which serves as the
-  // default.
-  chrome.tabs.executeScript({
-    code: script
-  });
-}
-
-/**
- * Change the background color of the current page.
- *
- * @param {string} color The new background color.
- */
-function changeState(state) {
-  var script = 'document.body.style.backgroundColor="' + state + '";';
+function setState(state) {
+  var script = scripts[state]
   // See https://developer.chrome.com/extensions/tabs#method-executeScript.
   // chrome.tabs.executeScript allows us to programmatically inject JavaScript
   // into a page. Since we omit the optional first argument "tabId", the script
