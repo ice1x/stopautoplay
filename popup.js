@@ -82,7 +82,7 @@ function setState(state) {
  * @param {function(string)} callback called with the saved background color for
  *     the given url on success, or a falsy value if no color is retrieved.
  */
-function getSavedBackgroundColor(url, callback) {
+function getSavedState(url, callback) {
   // See https://developer.chrome.com/apps/storage#type-StorageArea. We check
   // for chrome.runtime.lastError to ensure correctness even when the API call
   // fails.
@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Load the saved background color for this page and modify the dropdown
     // value, if needed.
-    getSavedBackgroundColor(url, (savedColor) => {
+    getSavedState(url, (savedColor) => {
       if (savedColor) {
         setState(savedColor);
         dropdown.value = savedColor;
@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // selection changes.
     dropdown.addEventListener('change', () => {
       setState(dropdown.value);
-      saveBackgroundColor(url, dropdown.value);
+      saveState(url, dropdown.value);
     });
   });
 });
